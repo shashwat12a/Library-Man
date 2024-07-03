@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+
+{% block title %}Books - Flask App{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5">
+  <div class="float-left">
+      <a href="/books/create" class="btn btn-primary">Add</a>
+  </div>
+</div>
+<div class="row mt-5">
+    <div class="float-left">
+        <h2>Books List</h2>
+    </div>
+</div>
+<div class="row mt-5">
+    <table class="table" id="userstbl">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Edition</th>
+            <th>Stock</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+            <tr>
+                <th scope="row">{{ book.id }}</th>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.edition }}</td>
+                <td>{{ book.stock }}</td>
+                <td><a href="/books/detail/{{ book.id }}/">Modify or Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

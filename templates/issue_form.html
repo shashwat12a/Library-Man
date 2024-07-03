@@ -1,0 +1,30 @@
+{% extends 'master.html' %}
+
+{% block title %}Add New Issue{% endblock %}
+
+{% block content %}
+<div class="row mt-5 p-2">
+    <div class="float-left">
+        <h2>Create New Issue</h2>
+    </div>
+</div>
+<form method="POST" action="/issues/create">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label for="book">{{ form.book.label }}</label>
+        {{ form.book(size=1, class="form-control", placeholder="select a book") }}
+    </div>
+    <div class="form-group">
+        <label for="reader">{{ form.reader.label }}</label>
+        {{ form.reader(size=1, class="form-control", placeholder="select a reader") }}
+    </div>
+    <div class="form-group">
+        <label for="reader">{{ form.quantity.label }}</label>
+        {{ form.quantity(class="form-control", placeholder="enter quantity") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+
+
+{% endblock %}

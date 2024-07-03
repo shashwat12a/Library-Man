@@ -1,0 +1,47 @@
+{% extends 'master.html' %}
+
+{% block title %}Books - Flask App{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5">
+  <div class="float-left">
+      <a href="/issues/create" class="btn btn-primary">Issue a Book</a>
+  </div>
+</div>
+<div class="row mt-5">
+    <div class="float-left">
+        <h2>Book Issues</h2>
+    </div>
+</div>
+<div class="row mt-5">
+    <table class="table" id="userstbl">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th>Book</th>
+            <th>Reader</th>
+            <th>Quatity</th>
+            <th>Issue Date</th>
+            <th>Returned</th>
+            <th>Return Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for issue in book_issues %}
+            <tr>
+                <th scope="row">{{ issue.id }}</th>
+                <td>{{ issue.book.name }}</td>
+                <td>{{ issue.reader.fname }}</td>
+                <td>{{ issue.quantity }}</td>
+                <td>{{ issue.issue_date }}</td>
+                <td>{% if issue.return_date %} True {% else %} False {% endif %}</td>
+                <td>{{issue.return_date}}</td>
+                <td><a href="/issues/detail/{{ issue.id }}/">Modify or Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

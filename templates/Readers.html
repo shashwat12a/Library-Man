@@ -1,0 +1,44 @@
+{% extends 'master.html' %}
+
+{% block title %}Readers - Flask App{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5">
+  <div class="float-left">
+      <a href="/readers/create" class="btn btn-primary">Add</a>
+  </div>
+</div>
+<div class="row mt-5">
+    <div class="float-left">
+        <h2>Readers List</h2>
+    </div>
+</div>
+<div class="row mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reader in readers %}
+            <tr>
+                <th scope="row">{{ reader.id }}</th>
+                <td>{{ reader.fname }}</td>
+                <td>{{ reader.lname }}</td>
+                <td>{{ reader.address }}</td>
+                <td>{{ reader.email }}</td>
+                <td>{{ reader.phone }}</td>
+                <td><a href="/readers/detail/{{ reader.id }}/">Modify or Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

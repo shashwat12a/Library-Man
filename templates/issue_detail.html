@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+
+{% block title %}Issue Detail{% endblock %}
+
+{% block content %}
+<div class="row mt-5 p-2">
+    <div class="float-left">
+        <h2>Issue Detail</h2>
+    </div>
+</div>
+<form method="POST" action="/issues/detail/{{ issue.id }}">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label for="book">{{ form.book.label }}</label>
+        {{ form.book(size=1, class="form-control", placeholder="select a book") }}
+    </div>
+    <div class="form-group">
+        <label for="reader">{{ form.reader.label }}</label>
+        {{ form.reader(size=1, class="form-control", placeholder="select a reader") }}
+    </div>
+    <div class="form-group">
+        <label for="issue_date">{{ form.issue_date.label }}</label>
+        <input type="text" class="form-control" readonly value="{{ form.issue_date.data }}">
+    </div>
+    <div class="form-group">
+        <label for="return_date">{{ form.return_date.label }}</label>
+        <input type="text" class="form-control" readonly value="{{ form.return_date.data }}">
+        <!-- .strftime('%Y-%m-%d %H:%M:%S') -->
+    </div>
+    <!-- {{ form.submit(class="btn btn-primary") }} -->
+</form>
+<div class="row mt-5 p-2">
+    <div class="float-left">
+        <h2>Return Book?</h2>
+        <a class="btn btn-danger" href="/issues/{{ issue.id }}/return/">Return Book</a>
+    </div>
+</div>
+{% endblock %}
